@@ -15,7 +15,17 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    // TODO
+    // TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    let success = this.getTopRepos.bind(this);
+    $.post('/repos', {
+      'data': term,
+      'success': success
+    });
+  }
+
+  getTopRepos() {
+    alert('got top repos!');
+    // get request
   }
 
   render () {
@@ -24,6 +34,10 @@ class App extends React.Component {
       <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
     </div>)
+  }
+
+  componentDidMount() {
+    this.getTopRepos();
   }
 }
 
